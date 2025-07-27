@@ -1,0 +1,274 @@
+{
+  "info": {
+    "name": "FinSight AI Agent API Tests",
+    "description": "Complete test suite for FinSight AI Financial Advisor Agent",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://finsight-ai-standalone-996911716674.us-central1.run.app",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/",
+          "host": ["{{base_url}}"],
+          "path": [""]
+        },
+        "description": "Check if the FinSight AI service is running"
+      },
+      "response": []
+    },
+    {
+      "name": "Agent Info",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/agent-info",
+          "host": ["{{base_url}}"],
+          "path": ["agent-info"]
+        },
+        "description": "Get information about the agent and its capabilities"
+      },
+      "response": []
+    },
+    {
+      "name": "Chat - Basic Greeting",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"message\": \"Hello, I'm looking for financial advice. Can you help me?\",\n  \"user_id\": \"postman_test_user_001\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/chat",
+          "host": ["{{base_url}}"],
+          "path": ["chat"]
+        },
+        "description": "Basic greeting and introduction to the agent"
+      },
+      "response": []
+    },
+    {
+      "name": "Chat - Loan Inquiry",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"message\": \"I want to apply for a home loan of $300,000. What documents do I need and what should I know about the process?\",\n  \"user_id\": \"postman_test_user_002\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/chat",
+          "host": ["{{base_url}}"],
+          "path": ["chat"]
+        },
+        "description": "Test loan assistance functionality"
+      },
+      "response": []
+    },
+    {
+      "name": "Chat - Investment Advice",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"message\": \"I have $50,000 to invest and I'm 30 years old. What investment strategy would you recommend for long-term wealth building?\",\n  \"user_id\": \"postman_test_user_003\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/chat",
+          "host": ["{{base_url}}"],
+          "path": ["chat"]
+        },
+        "description": "Test investment guidance functionality"
+      },
+      "response": []
+    },
+    {
+      "name": "Chat - Tax Filing Help",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"message\": \"I'm a freelancer and need help with tax filing. What deductions can I claim and what forms do I need?\",\n  \"user_id\": \"postman_test_user_004\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/chat",
+          "host": ["{{base_url}}"],
+          "path": ["chat"]
+        },
+        "description": "Test tax filing assistance functionality"
+      },
+      "response": []
+    },
+    {
+      "name": "Chat - Credit Score Improvement",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"message\": \"My credit score is 620 and I want to improve it to 750+. What specific steps should I take?\",\n  \"user_id\": \"postman_test_user_005\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/chat",
+          "host": ["{{base_url}}"],
+          "path": ["chat"]
+        },
+        "description": "Test credit score improvement functionality"
+      },
+      "response": []
+    },
+    {
+      "name": "Chat - Budget Planning",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"message\": \"I earn $6,000 per month and spend about $4,500. Help me create a better budget and savings plan.\",\n  \"user_id\": \"postman_test_user_006\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/chat",
+          "host": ["{{base_url}}"],
+          "path": ["chat"]
+        },
+        "description": "Test budget planning functionality"
+      },
+      "response": []
+    },
+    {
+      "name": "Chat - Government Schemes",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"message\": \"I'm a first-time home buyer. What government schemes or subsidies am I eligible for?\",\n  \"user_id\": \"postman_test_user_007\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/chat",
+          "host": ["{{base_url}}"],
+          "path": ["chat"]
+        },
+        "description": "Test government scheme suggestion functionality"
+      },
+      "response": []
+    },
+    {
+      "name": "Chat - Scam Detection",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"message\": \"I received a call saying I won a lottery and need to pay fees to claim the prize. They're asking for my bank details. Is this legitimate?\",\n  \"user_id\": \"postman_test_user_008\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/chat",
+          "host": ["{{base_url}}"],
+          "path": ["chat"]
+        },
+        "description": "Test scam detection functionality"
+      },
+      "response": []
+    },
+    {
+      "name": "Chat - Credit Card Advice",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"message\": \"I want to apply for my first credit card. What should I look for and which cards are best for beginners?\",\n  \"user_id\": \"postman_test_user_009\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/chat",
+          "host": ["{{base_url}}"],
+          "path": ["chat"]
+        },
+        "description": "Test credit card recommendation functionality"
+      },
+      "response": []
+    },
+    {
+      "name": "Chat - Complex Financial Planning",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"message\": \"I'm 35, married with 2 kids, earn $120k annually, have $200k in savings, and want to plan for retirement, kids' education, and buying a bigger house. Can you help me create a comprehensive financial plan?\",\n  \"user_id\": \"postman_test_user_010\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/chat",
+          "host": ["{{base_url}}"],
+          "path": ["chat"]
+        },
+        "description": "Test comprehensive financial planning with multiple aspects"
+      },
+      "response": []
+    }
+  ]
+}

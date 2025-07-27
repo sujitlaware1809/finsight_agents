@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinSight AI Local API Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .status {
+            padding: 20px 30px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .status-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .status-label {
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .status-value {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+        
+        .status-online {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-offline {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .chat-section {
+            padding: 30px;
+        }
+        
+        .test-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .test-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .test-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .custom-input {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .custom-input input {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+        
+        .custom-input input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .custom-input button {
+            padding: 15px 25px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .custom-input button:hover {
+            background: #218838;
+        }
+        
+        .response-area {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            min-height: 200px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            overflow-y: auto;
+        }
+        
+        .loading {
+            text-align: center;
+            color: #6c757d;
+            font-style: italic;
+        }
+        
+        .error {
+            color: #dc3545;
+            background: #f8d7da;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .footer {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-top: 1px solid #eee;
+            text-align: center;
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏦 FinSight AI</h1>
+            <p>Local Development Server Test Interface</p>
+        </div>
+        
+        <div class="status">
+            <div class="status-item">
+                <span class="status-label">Server Status:</span>
+                <span id="serverStatus" class="status-value status-offline">Checking...</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">API Base URL:</span>
+                <span class="status-value" style="background: #e7f3ff; color: #004085;">http://localhost:8000</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Agent:</span>
+                <span id="agentName" class="status-value" style="background: #fff3cd; color: #856404;">Loading...</span>
+            </div>
+        </div>
+        
+        <div class="chat-section">
+            <h3 style="margin-bottom: 20px; color: #333;">🧪 Test Financial Queries</h3>
+            
+            <div class="test-buttons">
+                <button class="test-btn" onclick="testQuery('Hello, I need financial advice')">
+                    👋 Basic Greeting
+                </button>
+                <button class="test-btn" onclick="testQuery('I want a home loan for $300,000')">
+                    🏠 Home Loan Query
+                </button>
+                <button class="test-btn" onclick="testQuery('How to invest $50,000 at age 30?')">
+                    📈 Investment Advice
+                </button>
+                <button class="test-btn" onclick="testQuery('My credit score is 620, how to improve?')">
+                    📊 Credit Score Help
+                </button>
+                <button class="test-btn" onclick="testQuery('Create budget for $6000 monthly income')">
+                    💹 Budget Planning
+                </button>
+                <button class="test-btn" onclick="testQuery('Best credit card for beginners')">
+                    💳 Credit Card Advice
+                </button>
+            </div>
+            
+            <div class="custom-input">
+                <input type="text" id="customMessage" placeholder="Type your custom financial question here..." 
+                       onkeypress="if(event.key==='Enter') sendCustomQuery()">
+                <button onclick="sendCustomQuery()">Send</button>
+            </div>
+            
+            <div id="responseArea" class="response-area">
+                <div class="loading">Ready to test! Choose a query above or type your own.</div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>💡 Use this same API base URL (http://localhost:8000) in your frontend application</p>
+            <p>📚 Available endpoints: GET /, GET /agent-info, POST /chat</p>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8000';
+        
+        // Check server status on page load
+        window.onload = function() {
+            checkServerStatus();
+        };
+        
+        async function checkServerStatus() {
+            try {
+                const response = await fetch(`${API_BASE}/`);
+                const data = await response.json();
+                
+                document.getElementById('serverStatus').textContent = 'Online';
+                document.getElementById('serverStatus').className = 'status-value status-online';
+                document.getElementById('agentName').textContent = data.agent;
+                
+                // Also get agent info
+                const agentResponse = await fetch(`${API_BASE}/agent-info`);
+                const agentData = await agentResponse.json();
+                document.getElementById('agentName').textContent = agentData.name;
+                
+            } catch (error) {
+                document.getElementById('serverStatus').textContent = 'Offline';
+                document.getElementById('serverStatus').className = 'status-value status-offline';
+                document.getElementById('agentName').textContent = 'N/A';
+                
+                document.getElementById('responseArea').innerHTML = 
+                    '<div class="error">❌ Cannot connect to local server. Make sure to run: python local_server.py</div>';
+            }
+        }
+        
+        async function testQuery(message) {
+            const responseArea = document.getElementById('responseArea');
+            responseArea.innerHTML = '<div class="loading">🤔 Thinking...</div>';
+            
+            try {
+                const response = await fetch(`${API_BASE}/chat`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        user_id: 'test_user_web'
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                responseArea.textContent = data.response;
+                
+            } catch (error) {
+                responseArea.innerHTML = `<div class="error">❌ Error: ${error.message}</div>`;
+            }
+        }
+        
+        function sendCustomQuery() {
+            const input = document.getElementById('customMessage');
+            const message = input.value.trim();
+            
+            if (message) {
+                testQuery(message);
+                input.value = '';
+            }
+        }
+    </script>
+</body>
+</html>
