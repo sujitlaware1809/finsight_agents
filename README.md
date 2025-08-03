@@ -2,6 +2,7 @@
 
 finsightAI is a modular, multi-agent financial assistant powered by Google's Agent Development Kit (ADK) and Gemini LLMs. It delivers tailored financial insights using real-time user context sourced via a secure FI MCP (Financial Information Multi-Context Platform) server.
 
+This project was built for the Google Cloud Agentic AI Hackathon at AI Agentic Day 2025, which was held in Bengaluru and became the world’s highest-attended AI hackathon
 ---
 
 ## Features
