@@ -1,21 +1,21 @@
-# 💰 finsightAI – Your Intelligent Financial Copilot
+# finsightAI – Your Intelligent Financial Copilot
 
 finsightAI is a modular, multi-agent financial assistant powered by Google's Agent Development Kit (ADK) and Gemini LLMs. It delivers tailored financial insights using real-time user context sourced via a secure FI MCP (Financial Information Multi-Context Platform) server.
 
 ---
 
-## ✨ Features
+## Features
 
-- 🔍 Personalized financial advice backed by real-time financial context  
-- 🧠 Modular multi-agent architecture using Google ADK  
-- 🔗 FI MCP API integration to fetch net worth, transactions, EPF, MF, stock data, etc.  
-- 🛠️ Built on Google’s Gemini ecosystem (ADK, Vertex AI)  
-- 📈 Tools for credit, loans, taxes, investments, scam detection & more  
-- 🚀 Designed for extensibility and easy tool addition  
+- Personalized financial advice backed by real-time financial context  
+- Modular multi-agent architecture using Google ADK  
+- FI MCP API integration to fetch net worth, transactions, EPF, MF, stock data, etc.  
+- Built on Google’s Gemini ecosystem (ADK, Vertex AI)  
+- Tools for credit, loans, taxes, investments, scam detection & more  
+- Designed for extensibility and easy tool addition  
 
 ---
 
-## 🧠 Agent Capabilities
+## Agent Capabilities
 
 | Agent Name              | Description                                                                 |
 |-------------------------|-----------------------------------------------------------------------------|
@@ -33,7 +33,7 @@ All agents autonomously query the FI MCP server to retrieve real-time financial 
 
 ---
 
-## 🧰 Google Tech Stack
+## Google Tech Stack
 
 This project leverages Google’s next-generation agent and AI ecosystem:
 
@@ -53,7 +53,7 @@ Additional tools:
 
 ---
 
-## 🔐 FI MCP Integration
+## FI MCP Integration
 
 A central feature of finsightAI is the ability to pull contextual financial data using the FI MCP server. Each agent checks the MCP before answering to ensure relevance.
 
@@ -88,7 +88,7 @@ finsightAI/
 
 ---
 
-## ⚙️ Setup Instructions
+## Setup Instructions
 
 Follow these steps to get finsightAI up and running locally:
 
